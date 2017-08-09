@@ -1,11 +1,11 @@
 {
   "name": "angular-universal-express",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build": "node_modules/.bin/tsc -p src/tsconfig.json"
+    "build": "node_modules/.bin/tsc -p src/tsconfig.json && cp package.json dist/packages-dist"
   },
   "keywords": [],
   "author": "",
