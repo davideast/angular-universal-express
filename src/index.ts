@@ -12,6 +12,10 @@ export interface ServerConfiguration {
   staticDirectory?: string;
 }
 
+/**
+ * Create a single observable of a file system read
+ * @param file the file path to read
+ */
 function readFile$(file: string): Observable<string> {
   return Observable.create((observer: Observer<string>) => {
     fs.readFile(file, 'utf8', (err, data) => {
@@ -25,6 +29,10 @@ function readFile$(file: string): Observable<string> {
   });
 }
 
+/**
+ * Create the Angular Universal request handler
+ * @param config 
+ */
 function angularUniversal({ index, main, staticDirectory, enableProdMode = false }: ServerConfiguration) {
   if (enableProdMode) { enableProd(); }
   return (req: express.Request, res: express.Response) => {
