@@ -33,7 +33,7 @@ function readFile$(file: string): Observable<string> {
  * Create the Angular Universal request handler
  * @param config 
  */
-function angularUniversal({ index, main, staticDirectory, enableProdMode = false }: ServerConfiguration) {
+export function angularUniversal({ index, main, staticDirectory, enableProdMode = false }: ServerConfiguration) {
   if (enableProdMode) { enableProd(); }
   return (req: express.Request, res: express.Response) => {
     readFile$(index)
