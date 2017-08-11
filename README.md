@@ -54,7 +54,7 @@ For this example, copying the contents of `dist` into `dist-server/dist` will al
 
 ### Server
 
-In your Angular CLI project create a `server` folder and an `index.js` file inside of it.
+In your Angular CLI project find the `dist-server` folder and add an `index.js` file inside of it.
 
 ```js
 const { angularUniversal } = require('angular-universal-express');
