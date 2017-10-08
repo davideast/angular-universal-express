@@ -29,7 +29,10 @@ app.use(express.static(__dirname + '/dist'));
 app.get('/*', angularUniversal({
   index: 'path/to/index.html',
   main: 'path/to/main.<some-long-hash>.bundle',
-  enableProdMode: true
+  enableProdMode: true,
+  extraOptions: [
+      provideModuleMap(LAZY_MODULE_MAP)
+  ]
 }));
 app.listen(3005, () => { console.log('Listening on 3005'); });
 ```
