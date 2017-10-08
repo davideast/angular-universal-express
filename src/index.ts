@@ -10,6 +10,7 @@ export interface ServerConfiguration {
   index: string;
   enableProdMode?: boolean;
   staticDirectory?: string;
+  extraOptions?: Array<any>;
 }
 
 /**
@@ -33,14 +34,14 @@ function readFile$(file: string): Observable<string> {
  * Create the Angular Universal request handler
  * @param config 
  */
-export function angularUniversal({ index, main, staticDirectory, enableProdMode = false }: ServerConfiguration) {
+export function angularUniversal({ index, main, staticDirectory, enableProdMode = false, extraOptions }: ServerConfiguration) {
   if (enableProdMode) { enableProd(); }
   return (req: express.Request, res: express.Response) => {
     readFile$(index)
       .mergeMap(document => {
         const url = req.path;
         const AppServerModuleNgFactory = require(main).AppServerModuleNgFactory;
-        return Observable.from(renderModuleFactory(AppServerModuleNgFactory, { document, url }))
+        return Observable.from(renderModuleFactory(AppServerModuleNgFactory, { document, url, extraOptions: extraOptions }))
       })
       .take(1)
       .subscribe(html => { res.send(html); });
